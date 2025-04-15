@@ -48,7 +48,7 @@ const userSchema = new Schema({
 
 
 userSchema.methods.getJWT = function(){
-    const ans = jwt.sign({_id:this._id, emailId:this.emailId},process.env.SECRET_KEY);
+    const ans = jwt.sign({_id:this._id, emailId:this.emailId},process.env.SECRET_KEY, {expiresIn:1800});
     return ans;
 }
 

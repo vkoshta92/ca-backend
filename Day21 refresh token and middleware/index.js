@@ -65,6 +65,23 @@ app.post("/login", async(req,res)=>{
     
 
 app.get("/user",userAuth, async(req,res)=>{
+// const {token}= req.cookies;
+// if(!token){
+//     throw new Error("token doesnt exist")
+// }
+
+// const payload= jwt.verify(token,"Rohit@13412$");
+
+// const {_id}= payload;
+// if (!_id){
+//     throw new Error ("Id is missing")
+// }
+// const result = await User.findById(_id);
+// res.send(result)
+
+// if(!result){
+//     throw new error ("Use doesnt exist")
+// }
     
     try{
         
