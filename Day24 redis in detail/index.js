@@ -13,7 +13,7 @@ const userRouter = require("./routes/user")
 const commentRouter = require("./routes/comment")
 const redisClient = require("./config/redis");
 
-
+// https://cloud.redis.io/#/databases/13086519/subscription/2686844/view-bdb/configuration
 
 
 app.use(express.json());

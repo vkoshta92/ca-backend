@@ -26,7 +26,9 @@ const userAuth = async (req,res,next)=>{
             throw new Error("User Doesn't exist");
         }
 
-
+// check krega ye token redish me to block list me to nhi hai.
+// ab dobara agar token to copy kiya to check kr lega block  me redis me pda hoga to   data get nhi hoga dobara.
+//logout  me to token usse nhi ho pyega pr get request me aa jega gar use check nhi lgenge exists vla.
         const IsBlocked = await redisClient.exists(`token:${token}`);
 
         if(IsBlocked)
