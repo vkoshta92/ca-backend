@@ -14,6 +14,12 @@ const commentRouter = require("./routes/comment")
 const redisClient = require("./config/redis");
 const rateLimiter = require("./middleware/rateLimiter");
 
+//  rate  limiter if bhut bar  get request   mre.
+// cliet ke ip se vlue 60 times request ttl 1 hours me
+// hr eq ke bich gap hona chiye 2 req lagatar bheji ti vo wait kre.
+
+// fix window- 1 ghnte me 60 request mrni hsbme gap bhi   rkhhna h
+// sliding window  man lo  5 min bad 59 req mar di to window slide ho jege next 1 hours me  hi 60 req hongi jb phla time nikl jega tb dobra 59 mrna chta h mar skta hai. window slide hoti rhgi jitni request mrga phlle. redis sliding window ko imlement krega.
 
 
 
