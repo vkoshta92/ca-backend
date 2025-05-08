@@ -12,11 +12,11 @@ const register = async (req,res)=>{
        validate(req.body); 
       const {firstName, emailId, password}  = req.body;
       req.body.password = await bcrypt.hash(password, 10);
-
+req.body.role='user';
     //
     
      const user =  await User.create(req.body);
-     const token =  jwt.sign({_id:user._id , emailId:emailId},process.env.JWT_KEY,{expiresIn: 60*60});
+     const token =  jwt.sign({_id:user._id , emailId:emailId,role:'user'},process.env.JWT_KEY,{expiresIn: 60*60});
      res.cookie('token',token,{maxAge: 60*60*1000});
      res.status(201).send("User Registered Successfully");
     }
@@ -43,7 +43,7 @@ const login = async (req,res)=>{
         if(!match)
             throw new Error("Invalid Credentials");
 
-        const token =  jwt.sign({_id:user._id , emailId:emailId},process.env.JWT_KEY,{expiresIn: 60*60});
+        const token =  jwt.sign({_id:user._id , emailId:emailId,role:user.role},process.env.JWT_KEY,{expiresIn: 60*60});
         res.cookie('token',token,{maxAge: 60*60*1000});
         res.status(200).send("Logged In Succeessfully");
     }
@@ -77,14 +77,16 @@ const logout = async(req,res)=>{
 
 const adminRegister = async(req,res)=>{
   try{
-      // validate the data;
+      // validate the data; ye bhi kr skte h yha xcheck lga de admin middleaware nhi banna pdega.
   //   if(req.result.role!='admin')
   //     throw new Error("Invalid Credentials");  
+//   admin ke login se new admin register kra skte h suki cookies se.
     validate(req.body); 
     const {firstName, emailId, password}  = req.body;
 
     req.body.password = await bcrypt.hash(password, 10);
-  //
+  //ab = admin ke ps dono power aa gyi . as a dmin ya user list krana hai. agar kuch nhi bheja user hi resister hoga.
+//   req.body.role= 'admin';
   
    const user =  await User.create(req.body);
    const token =  jwt.sign({_id:user._id , emailId:emailId, role:user.role},process.env.JWT_KEY,{expiresIn: 60*60});
