@@ -62,6 +62,7 @@ const problemSchema = new Schema({
             }
         }
     ],
+
     referenceSolution:[
         {
             language:{
@@ -77,7 +78,7 @@ const problemSchema = new Schema({
 
     problemCreator:{
         type: Schema.Types.ObjectId,
-        ref:'user', // user schema ko refer krega.
+        ref:'user',
         required:true
     }
 })
@@ -86,3 +87,21 @@ const problemSchema = new Schema({
 const Problem = mongoose.model('problem',problemSchema);
 
 module.exports = Problem;
+
+
+
+
+// const referenceSolution = [
+//     {
+//         language:"c++",
+//         completeCode:"C++ Code"
+//     },
+//     {
+//         language:"java",
+//         completeCode:"java Code"
+//     },
+//     {
+//         language:"js",
+//         completeCode:"JS Code"
+//     },
+// ]
